@@ -120,6 +120,9 @@ def display_demo():
 
         st.success("Pemrosesan video selesai!")
 
+        st.write('### Video Hasil Deteksi')
+        st.video('videos/person_detection.mp4')
+
         st.write('### Download Video')
         with open(output_path, "rb") as video_file:
             st.download_button(label="Unduh Video", data=video_file, file_name="person_detection.mp4", mime="video/mp4")
