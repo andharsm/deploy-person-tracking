@@ -6,11 +6,11 @@ import streamlit as st
 import tempfile
 
 # Load model
-MODEL_PATH = 'person_detection_yolov8/models/best.pt'
+MODEL_PATH = 'models/best.pt'
 model = YOLO(MODEL_PATH)
 
 
-VIDEO_PATH = 'person_detection_yolov8/videos/person in public area.mp4'
+VIDEO_PATH = 'videos/person in public area.mp4'
 
 # SORT tracker
 tracker = Sort(max_age=20, min_hits=5)
@@ -79,7 +79,7 @@ def display_demo():
     st.write('## Demo Projek')
 
     st.write('### Video Original')
-    st.video('person_detection_yolov8/videos/person in public area.mp4')
+    st.video('videos/person in public area.mp4')
 
     if st.button('Apply Model'):
         st.write('### Proses Detection')
