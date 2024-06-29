@@ -4,18 +4,18 @@ from ultralytics import YOLO
 from sort import Sort
 import streamlit as st
 import tempfile
+import os
 
 # Load model
 MODEL_PATH = 'models/best.pt'
 model = YOLO(MODEL_PATH)
-
 
 VIDEO_PATH = 'videos/person in public area.mp4'
 
 # SORT tracker
 tracker = Sort(max_age=20, min_hits=5)
 
-def process_frame(frame, recorded_redzone):  # Use a set to store unique person IDs
+def process_frame(frame, recorded_redzone):
     results = model(frame)
     person_count = 0
     redzone_person_count = 0
@@ -79,7 +79,7 @@ def display_demo():
     st.write('## Demo Projek')
 
     st.write('### Video Original')
-    st.video('videos/person in public area.mp4')
+    st.video(VIDEO_PATH)
 
     if st.button('Apply Model'):
         st.write('### Proses Detection')
@@ -98,10 +98,13 @@ def display_demo():
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
+        frame_count = 0
         while cap.isOpened():
             ret, frame = cap.read()
             if not ret:
                 break
+
+            frame_count += 1
 
             # Process frame
             processed_frame = process_frame(frame, recorded_redzone)
@@ -118,11 +121,17 @@ def display_demo():
         cap.release()
         out.release()
 
+        if frame_count == 0:
+            st.error("Video tidak dapat diproses, frame kosong.")
+            return
+
         st.success("Pemrosesan video selesai!")
 
+        # Display the processed video
         st.write('### Video Deteksi')
         st.video(output_path)
 
+        # Provide download link for the processed video
         st.write('### Download Video')
         with open(output_path, "rb") as video_file:
             st.download_button(label="Unduh Video", data=video_file, file_name="person_detection.mp4", mime="video/mp4")
