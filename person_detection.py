@@ -120,8 +120,8 @@ def display_demo():
 
         st.success("Pemrosesan video selesai!")
 
-        st.write('### Video Hasil Deteksi')
-        st.video('videos/person_detection.mp4')
+        # st.write('### Video Hasil Deteksi')
+        # st.video('videos/person_detection.mp4')
 
         st.write('### Download Video')
         with open(output_path, "rb") as video_file:
