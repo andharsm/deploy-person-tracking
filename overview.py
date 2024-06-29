@@ -48,7 +48,7 @@ def display_overview():
   Kurva Precision-Recall ini menunjukkan bahwa model YOLO yang dilatih sangat efektif dalam mendeteksi orang, dengan nilai precision dan recall yang sangat tinggi, yaitu 0.981, menghasilkan kinerja keseluruhan yang sangat baik.
   """)
 
-  st.image('images\confusion_matrix.png', caption='Confusion Matrix')
+  st.image('images/confusion_matrix.png', caption='Confusion Matrix')
   st.write("""
   Confusion matrix ini menunjukkan bahwa model YOLO yang dilatih sangat baik dalam mendeteksi orang, dengan jumlah prediksi benar (true positives) yang jauh lebih tinggi dibandingkan dengan jumlah kesalahan (false positives dan false negatives). Model ini mampu mendeteksi 379 dari 428 objek "people" dengan benar, hanya melakukan kesalahan kecil dalam klasifikasi
   """)
