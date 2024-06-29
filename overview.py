@@ -9,7 +9,7 @@ def display_overview():
   Dataset berdurasi 13.6s.
   """)
   
-  st.image('images\youtube_dataset.jpg', caption='Person Detection in Public Area Footage')
+  st.image('images/youtube_dataset.jpg', caption='Person Detection in Public Area Footage')
 
   # ekstraksi image
   st.write("""
